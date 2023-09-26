@@ -8,7 +8,7 @@ dotenv.config();
 
 const app = express();
 app.set('view engine', 'ejs');
-const port = 3000;
+const port = process.env.PORT || 3000;
 const geoCode = "https://api.openweathermap.org/geo/1.0/direct";
 const apiKey=process.env.OPEN_WEATHER_API_KEY;
 const weatherCode = "https://api.openweathermap.org/data/2.5/weather";
