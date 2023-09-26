@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<link rel="stylesheet" href="styles/index.css">
+<body style="background-color: rgb(228, 229, 230);">
+    <main class="content">
+        <section class="left-sec">
+            <div class="left" style="background-color: white;">
+                <div class="form-div">
+                    <form method="post" class="form">
+                        <input type="text" name="city" id="city"
+                         placeholder="search for places" class="input">
+                        
+                        <button formaction="/weather" type="submit" class="btn">
+                            <img src="icons/search.svg" alt="search" >
+                        </button>
+                    </form>
+                </div>
+                <div class="weather" style="margin: auto;">
+                    <div class="weather-img">
+                        <% if(locals.src && locals.error){ %>
+                        <img style="width: 150px; border-radius: 15px; object-fit: cover;" src=<%= src %> >
+                        <p><%= error %></p>
+                        <% }%>
+                    </div>
+                </div>
+                <div class="temp-time">
+                    <h1>
+                        <% if(locals.temp){ %>
+                            <%= temp %><sup style="font-size: 27px;">&deg;C</sup>
+                        <% } %>
+                    </h1>
+                    <p>
+                        <% if(locals.day && locals.time){ %>
+                            <%= day %>, <%= time %>
+                        <% } %>   
+                        </p>
+                </div>
+                <% if(locals.desc && locals.city && locals.src2){ %>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div class="desc">
+                            <div class="img">
+                                <img src=<%= src2 %>> 
+                            </div>
+                            <h3 style="font-size: 18px;"><%= desc %></h3>
+                        </div>
+                        <h3 style="text-transform: capitalize; font-size: 18px;"><%= city %></h3>
+                    </div>    
+                <% } %>    
+                </div>
+                <div class="shade"></div>
+        </section>
+
+
+
+
+
+        <section class="right">
+            <div class="detail">
+                <h2>Sunrise & Sunset</h2>
+                <% if(locals.sunriseTime && locals.sunsetTime){ %>
+                    <div class="sunrise-sunset">
+                        <div style="width: 25px;">
+                            <img src="icons/sunrise.png" alt="">
+                        </div>
+                        <%= sunriseTime %>
+                    </div>
+                    <div class="sunrise-sunset">
+                        <div style="width: 25px;">
+                            <img src="icons/sunset.png" alt="">
+                        </div>
+                        <%= sunsetTime %>
+                    </div>
+                <% }else{ %>
+                    <p>---</p>
+                    <% } %>
+            </div>
+            <div class="detail">
+                <h2>Humidity</h2>
+                <% if(locals.humidity){ %>
+                    <p ><%= humidity %> <sup>%</sup></p>
+                    <% }else{ %>
+                        <p>---</p>
+                        <% } %>
+            </div>
+            <div class="detail">
+                <h2>Wind Status</h2>
+                <% if(locals.wind){ %>
+                    <p><%= wind %>Km/hr</p>
+                    <% }else{ %>
+                        <p>---</p>
+                        <% } %>
+            </div>
+            <div class="detail">
+                <h2>Visibility</h2>
+                <% if(locals.visibility){ %>
+                    <p><%= visibility %>Km</p>
+                    <% }else{ %>
+                        <p>---</p>
+                        <% } %>
+            </div>
+            
+        </section>
+    </main>
+</body>
+</html>
